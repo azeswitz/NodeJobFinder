@@ -1,5 +1,4 @@
 var express = require('express');
-var mongoose = require('mongoose');
 var jobModel = require('./models/Job');
 var jobsData = require("./jobs-data.js");
 
@@ -20,13 +19,10 @@ app.get('*', function(req, res) {
 });
 
 //mongoose.connect('mongodb://localhost/jobfinder');
-mongoose.connect('mongodb://jfdev:Password1@ds047571.mongolab.com:47571/jobfinder');
-
-var con = mongoose.connection;
-
-con.once('open', function() {
+jobsData.connectDb('mongodb://jfdev:Password1@ds047571.mongolab.com:47571/jobfinder')
+.then(function() {
     console.log('connected to mongodb successfully!');
-    jobModel.seedJobs();
+    jobsData.seedJobs();
 });
 
 app.listen(process.env.PORT, process.env.IP);

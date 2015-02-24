@@ -3,10 +3,11 @@ var Promise = require("bluebird");
 
 var Job = mongoose.model('Job');
 
-exports.findJobs = function(query) {
+var findJobs = function(query) {
     return Promise.cast(mongoose.model('Job').find(query).exec());    
 }
 
+exports.findJobs = findJobs;
 
 //wrap third party function with promise.
 //Params, function, object reference
@@ -25,3 +26,10 @@ exports.seedJobs = function() {
         });
 
 };
+
+var jobs = [
+    {title:'Cook', description:'You will make bagels'},
+    {title:'Waiter', description:'You will be putting food on peoples tables'},
+    {title:'Programmer', description:'You will create universes - many of which will not be visisted.  Ever'},
+    {title:'Axe Maker', description:'We need many axes made..  So many..'}
+    ];

@@ -12,7 +12,7 @@ function resetJobs() {
 
 //wrap third party function with promise.
 //Params, function, object reference
-var connectDb = Promise.promisify(mongoose.connect, mongoose);
+//var connectDb = Promise.promisify(mongoose.connect, mongoose);
 
 
 
@@ -21,10 +21,10 @@ describe("get jobs", function() {
     var jobs;
     
     before(function(done){
-         connectDb('mongodb://localhost/jobfinder')
+         jobsData.connectDb('mongodb://localhost/jobfinder')
         .then(resetJobs)
-        .then(jobModel.seedJobs)
-        .then(jobModel.findJobs)
+        .then(jobsData.seedJobs)
+        .then(jobsData.findJobs)
         .then(function(collection) {
             jobs=collection;
             done();
