@@ -10,12 +10,6 @@ function resetJobs() {
     })
 }
 
-//wrap third party function with promise.
-//Params, function, object reference
-//var connectDb = Promise.promisify(mongoose.connect, mongoose);
-
-
-
 describe("get jobs", function() {
     
     var jobs;
