@@ -17,11 +17,11 @@ var db = {
    }
 };
 
-var jobService = require("../jobs-service")(db, app);
+var jobService = require("../../jobs-service")(db, app);
 
 var newJob = {title:'Cook', description:'You will make bagels'};
 
-describe("get jobs", function() {
+describe("service get jobs", function() {
    it("get should return a json list of jobs", function(done){
    request(app).get('/api/jobs')
    .expect('Content-Type', /json/)
@@ -32,7 +32,7 @@ describe("get jobs", function() {
    });
 });
 
-describe("save jobs", function() {
+describe("service save jobs", function() {
    it("should validate that title is greater than 4 characeters");
    /*
    , function(done){

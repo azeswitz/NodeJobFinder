@@ -7,13 +7,15 @@ var findJobs = function(query) {
     return Promise.cast(mongoose.model('Job').find(query).exec());    
 }
 
-exports.findJobs = findJobs;
+var createJob = Promise.promisify(Job.create, Job);
 
+//EXPORTS
+exports.findJobs = findJobs;
 //wrap third party function with promise.
 //Params, function, object reference
 exports.connectDb = Promise.promisify(mongoose.connect, mongoose);
 
-var createJob = Promise.promisify(Job.create, Job);
+exports.saveJob = createJob;
 
 exports.seedJobs = function() {
 
@@ -24,9 +26,9 @@ exports.seedJobs = function() {
                 });
             }
         });
-
 };
 
+//SEED DATA
 var jobs = [
     {title:'Cook', description:'You will make bagels'},
     {title:'Waiter', description:'You will be putting food on peoples tables'},
