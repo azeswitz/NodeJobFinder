@@ -7,6 +7,8 @@ angular.module('app').controller('testCtrl', function($scope, $resource, jobs) {
     $scope.submit = function(){
         var job = {title:$scope.title, description:$scope.description};
         jobs.save(job);
+        $scope.title='';
+        $scope.description='';
         $scope.jobs.push(job);
     }
 });
